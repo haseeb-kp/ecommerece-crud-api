@@ -5,16 +5,17 @@ from django.conf.urls.static import static
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-from django.urls import re_path
+from django.urls import path, re_path
+from app.views import redirect_to_docs
 
 # openapi documentation
 schema_view = get_schema_view(
     openapi.Info(
-        title="Snippets API",
+        title="FAYA Ecommerce API",
         default_version='v1',
-        description="Test description",
+        description="Following are the api endpoints i created as part of assignment",
         terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="contact@snippets.local"),
+        contact=openapi.Contact(email="haseebkph@gmail.com"),
         license=openapi.License(name="BSD License"),
     ),
     public=True,
@@ -22,6 +23,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    path('', redirect_to_docs),
     path('django_admin/', django_admin.site.urls),
 
     re_path(r'^docs/$', schema_view.with_ui('swagger',
