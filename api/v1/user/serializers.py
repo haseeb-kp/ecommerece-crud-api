@@ -28,3 +28,17 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'email', 'name', 'password','phone_number']
         extra_kwargs = {'password': {'write_only': True}}
 
+class ProductSerializer(serializers.ModelSerializer):
+    price = serializers.FloatField()
+
+    def validate_price(self, value):
+        price_regex = re.compile(r'^\d+(\.\d+)?$')
+        if not price_regex.match(str(value)) or value <= 0:
+            raise serializers.ValidationError('Invalid price')
+        return value
+
+    class Meta:
+        model = Product
+        fields = ['id', 'product_name', 'user', 'description', 'added_on', 'price', 'is_active']
+        read_only_fields = ['id', 'user', 'added_on', 'is_active']
+

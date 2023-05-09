@@ -37,10 +37,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 class Product(models.Model):
-    product_name = models.CharField(max_length=500, blank=True)
+    product_name = models.CharField(max_length=100)
     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=True)
-    added_on = models.DateTimeField(null=True, blank=True)
+    added_on = models.DateField(auto_now_add=True)
     price = models.FloatField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
 
