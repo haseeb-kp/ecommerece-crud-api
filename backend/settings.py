@@ -126,14 +126,26 @@ SIMPLE_JWT = {
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DEV_DB
+#Development
+# DATABASES = {
+#     'default': {
+#         'ENGINE': config('DATABASE_ENGINE'),
+#         'NAME': config('DATABASE_NAME'),
+#         'USER': config('DATABASE_USER'),
+#         'PASSWORD': config('DATABASE_PASSWORD'),
+#         'HOST': config('DATABASE_HOST')
+#     }
+# }
+
+#Production
 DATABASES = {
     'default': {
         'ENGINE': config('DATABASE_ENGINE'),
-        'NAME': config('DATABASE_NAME'),
-        'USER': config('DATABASE_USER'),
-        'PASSWORD': config('DATABASE_PASSWORD'),
-        'HOST': config('DATABASE_HOST')
+        'NAME': config('RAILWAY_DB_NAME'),
+        'USER': config('RAILWAY_DB_USER'),
+        'PASSWORD': config('RAILWAY_DB_PASSWORD'),
+        'HOST': config('RAILWAY_DB_HOST'),
+        'PORT': config('RAILWAY_DB_PORT')
     }
 }
 
