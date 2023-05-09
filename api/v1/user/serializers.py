@@ -21,6 +21,8 @@ class UserSerializer(serializers.ModelSerializer):
     def validate_phone_number(self, phone_number):
         if not re.match("^[0-9]*$", phone_number):
             raise serializers.ValidationError("Phone number can only contain digits.")
+        if not re.match("^[0-9]{8,13}$", phone_number):
+            raise serializers.ValidationError("Phone number must be between 8 and 13 digits.")
         return phone_number
 
     class Meta:
